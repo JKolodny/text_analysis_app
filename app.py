@@ -7,6 +7,7 @@ import pandas as pd
 import datetime
 from dateutil import parser
 nltk.download('punkt')
+nltk.download('stopwords')
 
 data = pd.read_csv("r_mma_post.csv")
 data = data[["subreddit", "title", "score", "upvote_ratio", "Date"]]
