@@ -7,7 +7,7 @@ import pandas as pd
 import datetime
 from dateutil import parser
 
-data = pd.read_csv("/Users/josh/Desktop/MMA Data Mining/r_mma_post.csv")
+data = pd.read_csv("r_mma_post.csv")
 data = data[["subreddit", "title", "score", "upvote_ratio", "Date"]]
 data = data[data["Date"].notnull()]
 data["Date"] = data[data["Date"].notnull()]["Date"].apply(lambda x: parser.parse(x))
