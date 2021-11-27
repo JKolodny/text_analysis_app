@@ -9,6 +9,7 @@ from dateutil import parser
 nltk.download('punkt')
 nltk.download('stopwords')
 
+# Importing Data
 data = pd.read_csv("r_mma_post.csv")
 data = data[["subreddit", "title", "score", "upvote_ratio", "Date"]]
 data = data[data["Date"].notnull()]
