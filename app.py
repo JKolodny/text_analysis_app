@@ -79,9 +79,9 @@ st.title("MMA Text Analysis")
 
 d = st.date_input(
     "Choose a Date Range",
-    value=(datetime.datetime(2021, 11, 19), datetime.datetime(2021, 11, 26)),
+    value=(datetime.datetime(2021, 11, 19), datetime.datetime(2021, 11, 28)),
     min_value=datetime.datetime(2021, 11, 19),
-    max_value=datetime.datetime(2021, 11, 26),
+    max_value=list(data['Date'].sort_values(ascending=False))[0].date(),
 )
 
 subreddits = st.multiselect('Subreddits Chosen', ['MMA', 'ufc'])
