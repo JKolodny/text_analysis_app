@@ -93,7 +93,7 @@ d = st.date_input(
     max_value=list(data['Date'].sort_values(ascending=False))[0].date(),
 )
 
-subreddits = st.multiselect('Subreddits Chosen', ['MMA', 'ufc'])
+subreddits = st.multiselect('Subreddits Chosen', ['MMA', 'ufc'], ['MMA', 'ufc'])
 
 data = data[data['subreddit'].isin(subreddits)]
 
