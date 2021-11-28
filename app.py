@@ -9,11 +9,13 @@ import datetime
 from dateutil import parser
 import altair as alt
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-nltk.download('punkt')
-nltk.download('stopwords')
-sid = SentimentIntensityAnalyzer()
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
+
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('vader_lexicon')
+sid = SentimentIntensityAnalyzer()
 
 
 # Importing Data
