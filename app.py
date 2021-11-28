@@ -99,11 +99,11 @@ data = data[data['subreddit'].isin(subreddits)]
 
 data['sent'] = data['title'].apply(lambda x: sid.polarity_scores(x)['compound'])
 
-st.markdown("## Negative Sentiment Posts")
+st.markdown("## Negative Sentiment Posts:")
 for i in data.sort_values(by='sent', ascending=True)['title'].index[0:5]:
     st.markdown("* " + str(data.sort_values(by='sent', ascending=True)['title'][i]))
 
-st.markdown("## Positive Sentiment Posts")
+st.markdown("## Positive Sentiment Posts:")
 for i in data.sort_values(by='sent', ascending=True)['title'].index[-6:-1]:
     st.markdown("* " + str(data.sort_values(by='sent', ascending=True)['title'][i]))
 
