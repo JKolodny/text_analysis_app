@@ -88,7 +88,9 @@ def phrases_and_bigrams(df) -> list:
     return filtered_sentence, w
 
 
-st.title("MMA Text Analysis")
+st.title("MMA Subreddit Text Analysis")
+
+st.markdown("* A simple app..")
 
 d = st.date_input(
     "Choose a Date Range",
@@ -103,11 +105,18 @@ data = data[data['subreddit'].isin(subreddits)]
 
 data['sent'] = data['title'].apply(lambda x: sid.polarity_scores(x)['compound'])
 
-st.markdown("## Negative Sentiment Posts:")
+popular = '<u><p style="font-family:sans-serif; color:Blue; font-size: 42px;">Top Threads:</p></u>'
+st.markdown(popular, unsafe_allow_html=True)
+for i in data.sort_values(by='score', ascending=False)['title'].index[0:5]:
+    st.markdown("* " + str(data['title'][i]))
+
+new_title = '<u><p style="font-family:sans-serif; color:#ff4b4b; font-size: 42px;">Negative Sentiment Posts:</p></u>'
+st.markdown(new_title, unsafe_allow_html=True)
 for i in data.sort_values(by='sent', ascending=True)['title'].index[0:5]:
     st.markdown("* " + str(data.sort_values(by='sent', ascending=True)['title'][i]))
 
-st.markdown("## Positive Sentiment Posts:")
+pos_title = '<u><p style="font-family:sans-serif; color:Green; font-size: 42px;">Positive Sentiment Posts:</p></u>'
+st.markdown(pos_title, unsafe_allow_html=True)
 for i in data.sort_values(by='sent', ascending=True)['title'].index[-6:-1]:
     st.markdown("* " + str(data.sort_values(by='sent', ascending=True)['title'][i]))
 
@@ -117,11 +126,8 @@ data = data[
 filtered_sentence = phrases_and_bigrams(data)[0]
 filtered_text = phrases_and_bigrams(data)[1]
 
-st.markdown("## Most Popular Threads:")
-for i in data.sort_values(by='score', ascending=False)['title'].index[0:5]:
-    st.markdown("* " + str(data['title'][i]))
-
-st.markdown("## Most Common Tokens:")
+common_title = '<u><p style="font-family:sans-serif; color:Black; font-size: 42px;">Most Common Tokens:</p></u>'
+st.markdown(common_title, unsafe_allow_html=True)
 common_tokens = pd.DataFrame(Counter(filtered_sentence).most_common(5)).rename(
     columns={0: "Token", 1: "Count"}
 )
@@ -134,7 +140,9 @@ bigrams = pd.DataFrame(
 st.table(common_tokens['Count'])
 
 
-st.markdown("## Most Common Bigrams:")
+
+bigrams_title = '<u><p style="font-family:sans-serif; color:Black; font-size: 42px;">Most Common Bigrams:</p></u>'
+st.markdown(bigrams_title, unsafe_allow_html=True)
 st.table(bigrams)
 
 # c = alt.Chart(common_tokens).mark_bar().encode(x = 'Count', y='Token').configure_axis(
@@ -163,7 +171,8 @@ word_cloud = base.mark_text(baseline='middle').encode(
 # Create and generate a word cloud image:
 wordcloud = WordCloud(background_color='white', width=800, height=400).generate(filtered_text)
 
-st.markdown('## Word Cloud:')
+word_cloud = '<u><p style="font-family:sans-serif; color:Black; font-size: 42px;">Word Cloud:</p></u>'
+st.markdown(word_cloud, unsafe_allow_html=True)
 # Display the generated image:
 plt.imshow(wordcloud, interpolation='bilinear')
 plt.axis("off")
