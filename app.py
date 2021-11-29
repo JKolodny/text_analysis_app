@@ -104,7 +104,7 @@ data = data[data['subreddit'].isin(subreddits)]
 
 data['sent'] = data['title'].apply(lambda x: sid.polarity_scores(x)['compound'])
 
-popular = '<u><p style="font-family:sans-serif; color:Blue; font-size: 42px;">Top Threads:</p></u>'
+popular = '<u><p style="font-family:sans-serif; color:#007BA7; font-size: 42px;">Top Threads:</p></u>'
 st.markdown(popular, unsafe_allow_html=True)
 for i in data.sort_values(by='score', ascending=False)['title'].index[0:5]:
     st.markdown("* " + str(data['title'][i]))
@@ -114,7 +114,7 @@ st.markdown(new_title, unsafe_allow_html=True)
 for i in data.sort_values(by='sent', ascending=True)['title'].index[0:5]:
     st.markdown("* " + str(data.sort_values(by='sent', ascending=True)['title'][i]))
 
-pos_title = '<u><p style="font-family:sans-serif; color:Green; font-size: 42px;">Positive Sentiment Posts:</p></u>'
+pos_title = '<u><p style="font-family:sans-serif; color:#D1F3C5; font-size: 42px;">Positive Sentiment Posts:</p></u>'
 st.markdown(pos_title, unsafe_allow_html=True)
 for i in data.sort_values(by='sent', ascending=True)['title'].index[-6:-1]:
     st.markdown("* " + str(data.sort_values(by='sent', ascending=True)['title'][i]))
