@@ -17,6 +17,10 @@ nltk.download('stopwords')
 nltk.download('vader_lexicon')
 sid = SentimentIntensityAnalyzer()
 
+count = pd.read_csv('counter.csv', index_col=False)
+#count['Date'] += 1
+count = count['Date'].append(pd.Series([datetime.datetime.now()], name='Date'))
+count.to_csv('counter.csv', index=False)
 
 # Importing Data
 data = pd.read_csv("r_mma_post.csv")
