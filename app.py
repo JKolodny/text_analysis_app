@@ -167,7 +167,7 @@ word_cloud = base.mark_text(baseline='middle').encode(
 )
 
 # Create and generate a word cloud image:
-wordcloud = WordCloud(background_color='black', width=800, height=400).generate(filtered_text)
+wordcloud = WordCloud(width=800, height=400).generate(filtered_text)
 
 word_cloud = '<u><p style="font-family:sans-serif; color:White; font-size: 42px;">Word Cloud:</p></u>'
 st.markdown(word_cloud, unsafe_allow_html=True)
