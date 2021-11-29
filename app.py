@@ -89,6 +89,7 @@ def phrases_and_bigrams(df) -> list:
 st.title("MMA Subreddit Text Analysis")
 
 st.markdown("* A simple app..")
+st.markdown("* Designed by...")
 
 d = st.date_input(
     "Choose a Date Range",
