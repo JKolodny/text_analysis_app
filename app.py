@@ -1,4 +1,3 @@
-from altair.vegalite.v4.schema.core import FontStyle
 import streamlit as st
 import nltk
 from collections import Counter
@@ -126,7 +125,7 @@ data = data[
 filtered_sentence = phrases_and_bigrams(data)[0]
 filtered_text = phrases_and_bigrams(data)[1]
 
-common_title = '<u><p style="font-family:sans-serif; color:Black; font-size: 42px;">Most Common Tokens:</p></u>'
+common_title = '<u><p style="font-family:sans-serif; color:White; font-size: 42px;">Most Common Tokens:</p></u>'
 st.markdown(common_title, unsafe_allow_html=True)
 common_tokens = pd.DataFrame(Counter(filtered_sentence).most_common(5)).rename(
     columns={0: "Token", 1: "Count"}
@@ -141,7 +140,7 @@ st.table(common_tokens['Count'])
 
 
 
-bigrams_title = '<u><p style="font-family:sans-serif; color:Black; font-size: 42px;">Most Common Bigrams:</p></u>'
+bigrams_title = '<u><p style="font-family:sans-serif; color:White; font-size: 42px;">Most Common Bigrams:</p></u>'
 st.markdown(bigrams_title, unsafe_allow_html=True)
 st.table(bigrams)
 
@@ -171,7 +170,7 @@ word_cloud = base.mark_text(baseline='middle').encode(
 # Create and generate a word cloud image:
 wordcloud = WordCloud(background_color='white', width=800, height=400).generate(filtered_text)
 
-word_cloud = '<u><p style="font-family:sans-serif; color:Black; font-size: 42px;">Word Cloud:</p></u>'
+word_cloud = '<u><p style="font-family:sans-serif; color:White; font-size: 42px;">Word Cloud:</p></u>'
 st.markdown(word_cloud, unsafe_allow_html=True)
 # Display the generated image:
 plt.imshow(wordcloud, interpolation='bilinear')
